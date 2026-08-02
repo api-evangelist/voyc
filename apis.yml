@@ -1,19 +1,50 @@
 aid: voyc
 name: Voyc
-description: Voyc is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Voyc is a conversation intelligence and compliance monitoring platform
+  for regulated industries such as financial services and insurance. The platform
+  automatically monitors 100% of contact centre interactions using speech analytics
+  AI, flagging high-risk cases, complaints, and vulnerable customers in near real
+  time, automating QA review, and producing the management information firms need
+  to evidence regulatory compliance (including FCA Consumer Duty). Calls reach Voyc
+  from telephony platforms like Twilio, Genesys, Five9, RingCentral, Aircall, Amazon
+  Connect, and Talkdesk via SFTP or API, and a Voyc API (v3) supports conversation
+  uploads and data export alongside webhooks.
 url: https://raw.githubusercontent.com/api-evangelist/voyc/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profile
+x-tier-reason: enriched-company-no-public-api-docs
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://github.com/voyc-ai.png
 tags:
 - Company
+- Conversation Intelligence
+- Compliance
+- Call Monitoring
+- Speech Analytics
+- Contact Centers
+- Financial Services
+- Artificial Intelligence
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -21,5 +52,39 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/voyc-trust-center.yml
 - type: Website
   url: https://voyc.ai/
+- type: Documentation
+  url: https://help.voyc.ai/en/
+- type: Support
+  url: https://www.voyc.ai/contact/
+- type: Blog
+  url: https://insights.voyc.ai/blog
+- type: StatusPage
+  url: https://status.voyc.ai/
+- type: TermsOfService
+  url: https://voyc.ai/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://voyc.ai/gdpr-privacy-notice/
+- type: GitHubOrganization
+  url: https://github.com/voyc-ai
+- type: Login
+  url: https://app.voyc.ai/
+- type: Compliance
+  url: https://trust.voyc.ai/
+- type: Security
+  url: https://trust.voyc.ai/
+- type: VulnerabilityDisclosure
+  url: security/voyc-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/voyc-domain-security.yml
+- type: Conformance
+  url: conformance/voyc-conformance.yml
+- type: Lifecycle
+  url: lifecycle/voyc-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/voyc-webhooks.yml
+- type: LLMsTxt
+  url: llms/voyc-llms.txt

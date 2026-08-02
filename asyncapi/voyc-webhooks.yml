@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.voyc.ai/
+type: Webhooks
+summary: >-
+  Voyc advertises a Webhooks surface as a first-class monitored component of its
+  platform. The public status page (incident.io) lists "Webhooks" in the APIs
+  component group alongside "Voyc API" (Conversation Uploads & Reporting) and
+  "Voyc API v3" (Data Export), with uptime tracked since 2026-03-02. No public
+  webhook event catalog or AsyncAPI document is published; webhook setup is
+  handled during customer onboarding (integration docs are customer-only Notion
+  pages referenced from help.voyc.ai).
+webhooks:
+  advertised: true
+  status_component: Webhooks
+  status_group: APIs
+  event_catalog_published: false
+events: []
+evidence:
+- source: https://status.voyc.ai/
+  detail: '"Webhooks" component monitored under the APIs group, data available since 2026-03-02'

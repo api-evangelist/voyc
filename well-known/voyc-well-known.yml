@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+- host: https://voyc.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://www.voyc.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://app.voyc.ai
+  note: SPA catch-all - every path (including /.well-known/security.txt and
+    /.well-known/openid-configuration) returns HTTP 200 with the app HTML shell,
+    not a real discovery document. Recorded as absent.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    spa_catch_all: true
+    real_document: false
+  - path: /.well-known/openid-configuration
+    status: 200
+    spa_catch_all: true
+    real_document: false
+notes: No well-known discovery documents are published by Voyc as of this probe.

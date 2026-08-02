@@ -1,0 +1,21 @@
+{
+  "repo": "voyc",
+  "feeds": [
+    {
+      "source": "https://voyc.ai/feed/",
+      "feed_url": "https://voyc.ai/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.voyc.ai/contact/",
+      "feed_url": "https://voyc.ai/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-08-01T15:49:00Z"
+}

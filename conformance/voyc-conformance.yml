@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://trust.voyc.ai/ + https://voyc.ai/ + https://voyc.ai/gdpr-privacy-notice/
+standards:
+- id: soc2-type1
+  conforms: true
+  evidence: SOC 2 Type 1 listed on the SafeBase trust center at https://trust.voyc.ai/
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 listed on the SafeBase trust center at https://trust.voyc.ai/
+- id: gdpr
+  conforms: true
+  evidence: Published GDPR privacy notice at https://voyc.ai/gdpr-privacy-notice/ and
+    data-privacy commitments on the trust center (breach notifications, data flows)
+- id: fca-consumer-duty
+  conforms: true
+  evidence: Product is positioned as compliance evidence tooling for FCA Consumer Duty
+    (https://voyc.ai/ - regulated financial services and insurance monitoring); this is
+    a supported regulatory framework for customers rather than a certification of Voyc
+- id: oauth2
+  conforms: null
+  evidence: No public API authentication documentation found; Voyc API v3 exists (per
+    https://status.voyc.ai/) but its reference docs are customer-only (Notion links in
+    help.voyc.ai articles)
+- id: rfc9457-problem-details
+  conforms: null
+  evidence: No public API error documentation found

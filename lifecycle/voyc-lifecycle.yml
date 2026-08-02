@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.voyc.ai/
+status_page: https://status.voyc.ai/
+status_platform: incident.io
+status_components:
+  groups:
+  - name: Core Services
+    count: 8
+  - name: Alex Suite
+    count: 2
+  - name: APIs
+    count: 3
+    components:
+    - name: Voyc API
+      description: Conversation Uploads & Reporting
+    - name: Voyc API v3
+      description: Data Export
+    - name: Webhooks
+  - name: Integrations
+    count: 14
+    examples: [Twilio, Genesys, Five9, RingCentral, Aircall, Amazon Connect, Talkdesk,
+      8x8, Dubber, Numonix, Imagicle, Connex-One, Hubspot, SFTP]
+  - name: AWS Services
+    count: 7
+  - name: Support
+    count: 3
+versioning:
+  scheme: major-version
+  current: v3
+  evidence: Status page lists "Voyc API v3" (Data Export) alongside "Voyc API"; help
+    center references a customer-only doc "Uploading Conversations to Voyc via API v2",
+    indicating a v2 -> v3 progression. No public versioning policy page found.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  evidence: No published deprecation policy found
+sla:
+  url: null
+  evidence: No public SLA page found; status page displays historical uptime (e.g.
+    Core Services 99.71%, APIs 100%)
+deprecated_operations: []
