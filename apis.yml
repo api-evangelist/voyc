@@ -16,6 +16,27 @@ x-backed-by:
 - techstars
 x-tier: profile
 x-tier-reason: enriched-company-no-public-api-docs
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Voyc runs a real production API at api.app.voyc.ai — /v3/organisation/ answers a
+    live 403 not_authenticated — but ships no public reference, OpenAPI, portal or
+    SDK anywhere; the integration documentation is handed to customers during
+    onboarding, so the only public trace of the API is a component name on the
+    incident.io status page.
+  evidence:
+  - url: https://api.app.voyc.ai/v3/organisation/
+    status: 403
+  - url: https://api.app.voyc.ai/openapi.json
+    status: 404
+  - url: https://voyc.ai/api/
+    status: 404
+  - url: https://voyc.ai/developers/
+    status: 404
+  - url: https://help.voyc.ai/en/
+    status: 200
+  checked: '2026-08-14'
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -29,12 +50,12 @@ accessModel:
   method: derived
 specificationVersion: '0.20'
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-14'
   status: enriched
-  artifacts_added: 8
+  artifacts_added: 7
   pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-14'
 image: https://github.com/voyc-ai.png
 tags:
 - Company
@@ -45,7 +66,39 @@ tags:
 - Contact Centers
 - Financial Services
 - Artificial Intelligence
-apis: []
+apis:
+- name: Voyc API v3
+  description: >-
+    Voyc's integration API, monitored on the public status page as "Voyc API v3"
+    (Data Export) alongside "Voyc API" (Conversation Uploads & Reporting). The
+    production host is api.app.voyc.ai, confirmed live 2026-08-14: /v3/ endpoints
+    return a credential-gated 403 with Voyc's drf-standardized-errors envelope and
+    /api/v2/ serves the web application. Integrating systems register an "app" per
+    organisation and issue access tokens through
+    /v3/organisation/{organisationId}/app/{appId}/access-token/. Voyc publishes NO
+    public API reference, OpenAPI, or developer portal - the integration
+    documentation is provided to customers during onboarding - so no machine-readable
+    contract exists to harvest.
+  humanURL: https://help.voyc.ai/en/
+  baseURL: https://api.app.voyc.ai
+  tags:
+  - conversation-intelligence
+  - speech-analytics
+  - compliance-monitoring
+  - contact-center
+  - call-recording
+  - quality-assurance
+  properties:
+  - type: Authentication
+    url: authentication/voyc-authentication.yml
+  - type: Conventions
+    url: conventions/voyc-conventions.yml
+  - type: ErrorCatalog
+    url: errors/voyc-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/voyc-rate-limits.yml
+  - type: StatusPage
+    url: https://status.voyc.ai/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -61,7 +114,9 @@ common:
 - type: Support
   url: https://www.voyc.ai/contact/
 - type: Blog
-  url: https://insights.voyc.ai/blog
+  url: https://voyc.ai/voyc-ai-blog-articles-case-studies-and-whitepapers/
+- type: GettingStarted
+  url: https://help.voyc.ai/en/collections/2918818-getting-started-with-voyc
 - type: StatusPage
   url: https://status.voyc.ai/
 - type: TermsOfService
@@ -88,3 +143,15 @@ common:
   url: asyncapi/voyc-webhooks.yml
 - type: LLMsTxt
   url: llms/voyc-llms.txt
+- type: Authentication
+  url: authentication/voyc-authentication.yml
+- type: Conventions
+  url: conventions/voyc-conventions.yml
+- type: ErrorCatalog
+  url: errors/voyc-problem-types.yml
+- type: Packages
+  url: packages/voyc-packages.yml
+- type: Plans
+  url: plans/voyc-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/voyc-rate-limits.yml
