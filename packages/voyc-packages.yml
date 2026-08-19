@@ -1,0 +1,43 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org, crates.io, and
+  https://api.github.com/orgs/voyc-ai/repos (2026-08-14)
+package_count: 0
+official_sdk_count: 0
+packages: []
+note: >-
+  Voyc publishes no client libraries. Every registry query below was made
+  unauthenticated against the registry's own metadata endpoint and returned a miss.
+  The voyc-ai GitHub organisation contains exactly one public repository —
+  `eslint-config`, an internal lint preset, last pushed 2022-04-26 — which is build
+  tooling, not an API client, and is not published to npm under any of the names
+  checked. No SDKs pointer is emitted for this provider.
+registries_checked:
+- registry: npm
+  names: ['voyc', 'voyc-ai', 'voyc-sdk', '@voyc/sdk', '@voyc/eslint-config',
+    '@voyc-ai/eslint-config', 'eslint-config-voyc']
+  result: not found
+  version: null
+- registry: pypi
+  names: ['voyc', 'voyc-sdk', 'voyc-api']
+  result: 'HTTP 404'
+  version: null
+- registry: rubygems
+  names: ['voyc']
+  result: 'HTTP 404'
+  version: null
+- registry: crates.io
+  names: ['voyc']
+  result: 'HTTP 403 (no crate)'
+  version: null
+github_org:
+  url: https://github.com/voyc-ai
+  public_repos:
+  - name: eslint-config
+    description: ESLint config for Voyc
+    language: JavaScript
+    updated: '2022-04-26'
+    is_sdk: false
+    published_to_registry: false
+    version: null

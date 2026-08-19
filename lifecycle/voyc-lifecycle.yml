@@ -1,6 +1,8 @@
-generated: '2026-07-21'
+generated: '2026-08-14'
 method: searched
-source: https://status.voyc.ai/
+source: >-
+  https://status.voyc.ai/ (2026-07-21); versioning re-confirmed 2026-08-14 against
+  live probes of https://api.app.voyc.ai and Voyc's first-party application bundle
 status_page: https://status.voyc.ai/
 status_platform: incident.io
 status_components:
@@ -26,11 +28,25 @@ status_components:
   - name: Support
     count: 3
 versioning:
-  scheme: major-version
+  scheme: uri-path
   current: v3
-  evidence: Status page lists "Voyc API v3" (Data Export) alongside "Voyc API"; help
-    center references a customer-only doc "Uploading Conversations to Voyc via API v2",
-    indicating a v2 -> v3 progression. No public versioning policy page found.
+  api_host: https://api.app.voyc.ai
+  versions_in_production:
+  - prefix: /api/v2
+    status: live
+    evidence: 'GET https://api.app.voyc.ai/api/v2/auth/login/ returns HTTP 200'
+  - prefix: /v3
+    status: live
+    evidence: >-
+      GET https://api.app.voyc.ai/v3/organisation/ returns HTTP 403 not_authenticated
+      (a routed, credential-gated endpoint). Note /v3 is NOT nested under /api —
+      /api/v3/ returns "An unknown API path was supplied.".
+  evidence: >-
+    Status page lists "Voyc API v3" (Data Export) alongside "Voyc API"; help center
+    references a customer-only doc "Uploading Conversations to Voyc via API v2",
+    indicating a v2 -> v3 progression. Both prefixes confirmed live on the production
+    API host 2026-08-14. No public versioning policy page found; no version negotiation
+    header observed.
 deprecation:
   policy_url: null
   sunset_header: null

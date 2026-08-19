@@ -1,0 +1,87 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live unauthenticated probes of https://api.app.voyc.ai plus the public Voyc web
+  application bundle at https://app.voyc.ai/assets/api-Y8KVxUPb.js (first-party
+  JavaScript served from Voyc's own domain).
+note: >-
+  Voyc publishes no public API reference, so no securityScheme document exists to
+  derive from. This profile is assembled ONLY from what an unauthenticated client
+  can observe on Voyc's own hosts: the HTTP responses api.app.voyc.ai returns, and
+  the request configuration Voyc's own first-party web app ships to every browser.
+  No credentials were used and no access control was defeated.
+api_host: https://api.app.voyc.ai
+summary:
+  types: [cookie-session, api-token]
+  api_key_in: []
+  oauth2_flows: []
+  oauth2: false
+  openid_connect: false
+  public_reference_published: false
+schemes:
+- name: SessionCookieWithCSRF
+  type: cookie
+  description: >-
+    The Voyc web application authenticates to /api/v2 with a Django session cookie
+    plus a CSRF double-submit token. The first-party client is configured with
+    withCredentials, xsrfHeaderName "X-CSRFToken" and xsrfCookieName "csrftoken".
+    This is the browser/app path, not a documented integration path.
+  evidence:
+    source: https://app.voyc.ai/assets/api-Y8KVxUPb.js
+    detail: >-
+      axios instance created with {withCredentials:true, withXSRFToken:true,
+      xsrfHeaderName:"X-CSRFToken", xsrfCookieName:"csrftoken", baseURL: <api host>/api/v2}
+- name: OrganisationAppAccessToken
+  type: apiToken
+  description: >-
+    Voyc API v3 exposes a per-organisation "app" registration with issuable access
+    tokens. The management surface is /v3/organisation/{organisationId}/app/ and
+    /v3/organisation/{organisationId}/app/{appId}/access-token/ (list, create,
+    delete). The token issued there is the credential an integrating system uses.
+    The transport header for the issued token is NOT publicly documented and was
+    not observed unauthenticated.
+  management_endpoints:
+  - method: GET
+    path: /v3/organisation/{organisationId}/app/
+  - method: GET
+    path: /v3/organisation/{organisationId}/app/{appId}/
+  - method: PATCH
+    path: /v3/organisation/{organisationId}/app/{appId}/
+  - method: DELETE
+    path: /v3/organisation/{organisationId}/app/{appId}/
+  - method: GET
+    path: /v3/organisation/{organisationId}/app/{appId}/access-token/
+  - method: POST
+    path: /v3/organisation/{organisationId}/app/{appId}/access-token/
+  - method: DELETE
+    path: /v3/organisation/{organisationId}/app/{appId}/access-token/{tokenId}/
+  evidence:
+    source: https://app.voyc.ai/assets/index-BKkV0m2i.js
+    detail: >-
+      First-party app bundle issues GET/POST/PATCH/DELETE against these exact v3
+      template paths.
+observed_challenges:
+- url: https://api.app.voyc.ai/v3/organisation/
+  method: GET
+  http_status: 403
+  www_authenticate: null
+  body: >-
+    {"type":"client_error","errors":[{"code":"not_authenticated","detail":"Authentication
+    credentials were not provided.","attr":null}]}
+  detail: >-
+    Returns 403 with a DRF standardized-errors envelope rather than a 401 with a
+    WWW-Authenticate challenge, so an agent gets no machine-readable hint about
+    which credential to present.
+- url: https://api.app.voyc.ai/api/v2/auth/login/
+  method: GET
+  http_status: 200
+  detail: >-
+    Anonymous session-state endpoint; returns {"authenticated": false, "user": null, ...}
+    to an unauthenticated caller.
+gaps:
+- No public authentication documentation page.
+- No OAuth 2.0 or OpenID Connect surface (/.well-known/oauth-authorization-server,
+  /.well-known/oauth-protected-resource and /.well-known/openid-configuration all 404
+  on api.app.voyc.ai and voyc.ai).
+- The header name and format for the v3 access token are not published, so an
+  integrator cannot write a client from public material.

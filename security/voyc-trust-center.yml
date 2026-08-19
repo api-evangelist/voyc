@@ -1,28 +1,12 @@
-generated: '2026-07-21'
+generated: '2026-08-14'
 method: searched
 probe: true
 source: https://trust.voyc.ai/
 url: https://trust.voyc.ai/
-platform: SafeBase (powered by Drata)
 certifications:
-- SOC 2 Type 1
-- SOC 2 Type 2
-documents:
-- Pentest reports
-- Privacy policy
-- Cyber insurance information
-- Security policies (acceptable use, access control, anti-malware, incident response)
-subprocessors:
-- Amazon Web Services (AWS)
-- Zapier
-- Sentry
-- Mailjet by Sinch
-- Intercom
-security_contact: infosec@voyc.ai
+- SOC 2
 evidence:
 - source: https://trust.voyc.ai/
   keywords:
   - soc 2
   - trust center
-  detail: SafeBase trust center listing SOC 2 Type 1 + Type 2, subprocessors, pentest
-    reports, and infosec@voyc.ai disclosure contact

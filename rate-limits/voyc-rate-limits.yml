@@ -1,0 +1,33 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live unauthenticated HTTP responses from https://api.app.voyc.ai, response headers
+  inspected 2026-08-14. Docs search of voyc.ai and help.voyc.ai found no rate-limit
+  reference.
+limit_count: 0
+limits: []
+headers:
+  request: []
+  response: []
+  observed: []
+exhaustion_status: null
+retry_after: false
+note: >-
+  Voyc documents no rate limits and signals none at runtime. No X-RateLimit-*,
+  RateLimit-* (RFC 9239 draft) or Retry-After header appeared on any observed
+  response from the production API host, and there is no public developer
+  documentation in which a limit could be published. An agent integrating with Voyc
+  has no way to pace itself except by observing failures. This is a recorded zero,
+  not a missing check.
+evidence:
+- url: https://api.app.voyc.ai/v3/organisation/
+  status: 403
+  response_headers_seen: [server, allow, strict-transport-security]
+  rate_limit_headers: none
+- url: https://api.app.voyc.ai/api/v2/auth/login/
+  status: 200
+  response_headers_seen: [server, allow, strict-transport-security]
+  rate_limit_headers: none
+- url: https://help.voyc.ai/en/
+  status: 200
+  detail: Product enablement hub; no API rate-limit article published.

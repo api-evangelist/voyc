@@ -1,0 +1,30 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://voyc.ai/ (full navigation and footer link extraction) plus direct probes
+  of the conventional pricing paths, 2026-08-14
+plan_count: 0
+plans: []
+model: contact-sales
+currency: null
+note: >-
+  Voyc publishes no pricing. There is no pricing page anywhere on voyc.ai — the
+  conventional paths all 404 and neither the primary navigation nor the footer of
+  the homepage links to one. Commercial engagement runs through the contact form at
+  https://voyc.ai/contact/ and a demo request. Billing is operated on Chargebee
+  (customer portals resolve at *-voyc.chargebeeportal.com, referenced from Voyc's own
+  application bundle), but no public plan catalogue or self-serve checkout is exposed.
+  This is a recorded zero, not a missing check.
+evidence:
+- url: https://voyc.ai/pricing/
+  status: 404
+- url: https://voyc.ai/pricing
+  status: 404
+- url: https://www.voyc.ai/pricing/
+  status: 404
+- url: https://voyc.ai/
+  status: 200
+  detail: Homepage nav and footer contain no pricing link.
+- url: https://voyc.ai/contact/
+  status: 200
+  detail: Contact/demo form is the only commercial entry point.

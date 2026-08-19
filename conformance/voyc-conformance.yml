@@ -1,6 +1,9 @@
-generated: '2026-07-21'
+generated: '2026-08-14'
 method: searched
-source: https://trust.voyc.ai/ + https://voyc.ai/ + https://voyc.ai/gdpr-privacy-notice/
+source: >-
+  https://trust.voyc.ai/ + https://voyc.ai/ + https://voyc.ai/gdpr-privacy-notice/
+  (2026-07-21); API-protocol entries re-tested against live probes of
+  https://api.app.voyc.ai (2026-08-14)
 standards:
 - id: soc2-type1
   conforms: true
@@ -18,10 +21,33 @@ standards:
     (https://voyc.ai/ - regulated financial services and insurance monitoring); this is
     a supported regulatory framework for customers rather than a certification of Voyc
 - id: oauth2
-  conforms: null
-  evidence: No public API authentication documentation found; Voyc API v3 exists (per
-    https://status.voyc.ai/) but its reference docs are customer-only (Notion links in
-    help.voyc.ai articles)
+  conforms: false
+  evidence: >-
+    No OAuth 2.0 surface. /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource both return HTTP 404 on the production API
+    host https://api.app.voyc.ai. The observed auth model is a Django session cookie
+    with CSRF for the web app and per-organisation app access tokens for API v3
+    (see authentication/voyc-authentication.yml).
+- id: openid-connect
+  conforms: false
+  evidence: >-
+    /.well-known/openid-configuration returns HTTP 404 on both voyc.ai and
+    api.app.voyc.ai.
 - id: rfc9457-problem-details
-  conforms: null
-  evidence: No public API error documentation found
+  conforms: false
+  evidence: >-
+    Probed live: errors are returned as application/json using the
+    drf-standardized-errors envelope
+    {"type":"client_error","errors":[{"code","detail","attr"}]}, with a bare
+    {"detail": "..."} fallback for unrouted paths. No application/problem+json
+    representation. See errors/voyc-problem-types.yml.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns HTTP 404 on voyc.ai and api.app.voyc.ai.
+- id: hsts
+  conforms: partial
+  evidence: >-
+    https://api.app.voyc.ai returns strict-transport-security "max-age=60;
+    includeSubDomains; preload". The header is present but max-age=60 is three orders
+    of magnitude below the 31536000 the preload list requires, so the preload
+    directive is not effective. The marketing host voyc.ai serves no HSTS at all.

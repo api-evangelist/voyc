@@ -1,0 +1,90 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live unauthenticated probes of https://api.app.voyc.ai plus Voyc's own public
+  first-party web bundles at https://app.voyc.ai/assets/index-BKkV0m2i.js and
+  https://app.voyc.ai/assets/api-Y8KVxUPb.js (2026-08-14).
+note: >-
+  Voyc publishes no public API reference, developer portal, or conventions page.
+  Everything recorded here was observed on Voyc's own public hosts. Where a
+  convention could not be observed without credentials it is recorded as unknown
+  rather than guessed.
+api_host: https://api.app.voyc.ai
+host_derivation: >-
+  Voyc's first-party app computes its API base as `${location.protocol}//api.${location.host}`,
+  so the production API host for app.voyc.ai is api.app.voyc.ai. Confirmed live:
+  the host resolves and returns Voyc's own JSON error envelope under /api and /v3.
+authentication:
+  style: cookie-session (web app, /api/v2) + per-organisation app access token (/v3)
+  artifact: authentication/voyc-authentication.yml
+  documented_publicly: false
+versioning:
+  scheme: uri-path
+  versions_in_production:
+  - prefix: /api/v2
+    detail: Web-application surface used by the Voyc SPA.
+  - prefix: /v3
+    detail: >-
+      Voyc API v3 — the integration surface. Note it is NOT under /api; /api/v3/
+      returns "An unknown API path was supplied.".
+  current: v3
+  policy_url: null
+  artifact: lifecycle/voyc-lifecycle.yml
+idempotency:
+  supported: unknown
+  header: null
+  detail: >-
+    No idempotency key header is documented, and none appears in Voyc's own client
+    code. Token creation (POST .../access-token/) is sent with an empty body and no
+    idempotency key. Recorded as unknown, NOT as supported — no Idempotency pointer
+    is emitted for this provider.
+pagination:
+  style: unknown
+  detail: >-
+    Not observable without credentials; every collection endpoint returns 403 to an
+    unauthenticated caller.
+error_envelope:
+  primary: '{"type": "<class>", "errors": [{"code", "detail", "attr"}]}'
+  fallback: '{"detail": "<message>"}'
+  library: drf-standardized-errors
+  rfc9457: false
+  artifact: errors/voyc-problem-types.yml
+rate_limit_signaling:
+  headers_observed: []
+  detail: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was present on any observed
+    response.
+  artifact: rate-limits/voyc-rate-limits.yml
+request_tracing:
+  request_id_header: null
+  detail: No correlation/request-id header observed on any response.
+custom_headers:
+- name: Voyc-Flags
+  direction: request
+  detail: >-
+    Feature-flag header the first-party client sends on every /api/v2 call, read
+    from localStorage `enabled_flags`. Not part of any documented public contract.
+- name: X-CSRFToken
+  direction: request
+  detail: CSRF double-submit token paired with the `csrftoken` cookie.
+transport:
+  https: true
+  server: uvicorn
+  hsts: 'max-age=60; includeSubDomains; preload'
+  hsts_note: >-
+    max-age of 60 seconds is far below the 31536000 the preload list requires, so
+    the `preload` directive is not effective.
+content_negotiation:
+  renders: [application/json, text/html]
+  parses: [application/json, application/x-www-form-urlencoded, multipart/form-data]
+  source: >-
+    HTTP OPTIONS https://api.app.voyc.ai/v3/organisation/ returned
+    {"name":"Organisation List","description":"","renders":[...],"parses":[...]}
+event_surface:
+  webhooks: advertised
+  artifact: asyncapi/voyc-webhooks.yml
+gaps:
+- No public conventions, pagination, filtering, or expansion documentation.
+- No idempotency contract.
+- No request-id / correlation header.
+- No rate-limit signalling.

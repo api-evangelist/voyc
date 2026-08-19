@@ -1,5 +1,6 @@
-generated: '2026-07-21'
+generated: '2026-08-14'
 method: searched
+source: Direct HTTP probes of every known Voyc host (2026-07-21, re-run and extended 2026-08-14)
 hosts:
 - host: https://voyc.ai
   documents:
@@ -17,9 +18,35 @@ hosts:
   documents:
   - path: /.well-known/security.txt
     status: 404
+- host: https://api.app.voyc.ai
+  note: >-
+    Production API host, discovered 2026-08-14 from Voyc's own first-party application
+    bundle. Returns an HTML 404 page for every /.well-known/ path — a real 404, not an
+    SPA catch-all.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
 - host: https://app.voyc.ai
-  note: SPA catch-all - every path (including /.well-known/security.txt and
-    /.well-known/openid-configuration) returns HTTP 200 with the app HTML shell,
+  note: >-
+    SPA catch-all - every path (including /.well-known/security.txt and
+    /.well-known/openid-configuration) returns HTTP 200 with the app HTML shell
+    (content-type text/html, body begins <!doctype html><html lang="en"><head><title>Voyc</title>),
     not a real discovery document. Recorded as absent.
   documents:
   - path: /.well-known/security.txt
@@ -30,4 +57,17 @@ hosts:
     status: 200
     spa_catch_all: true
     real_document: false
-notes: No well-known discovery documents are published by Voyc as of this probe.
+  - path: /.well-known/agent-card.json
+    status: 200
+    spa_catch_all: true
+    real_document: false
+  - path: /.well-known/agent.json
+    status: 200
+    spa_catch_all: true
+    real_document: false
+real_documents_found: 0
+notes: >-
+  No well-known discovery documents are published by Voyc on any host as of this
+  probe. Because every path either 404s or returns an SPA HTML shell, NO WellKnown
+  or SecurityTxt pointer is emitted in apis.yml - this file records an absence, and
+  an absence must not be scored as a presence.

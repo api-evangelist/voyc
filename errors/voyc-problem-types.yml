@@ -1,0 +1,66 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live unauthenticated HTTP probes of https://api.app.voyc.ai on 2026-08-14.
+format: drf-standardized-errors
+rfc9457: false
+note: >-
+  Voyc publishes no public error reference. Every entry below was observed on a
+  live, unauthenticated response from Voyc's own API host. Two DIFFERENT error
+  envelopes are in production simultaneously, which is itself the finding: routed
+  API errors use the drf-standardized-errors shape, while unrouted paths fall back
+  to a bare {"detail": "..."} object. Neither is application/problem+json, so the
+  API does not conform to RFC 9457.
+envelopes:
+- id: standardized
+  content_type: application/json
+  shape: '{"type": "<class>", "errors": [{"code": "<code>", "detail": "<message>", "attr": "<field|null>"}]}'
+  library: drf-standardized-errors (Django REST Framework)
+  detail: Returned by routed API views. Carries a stable machine-readable `code`.
+- id: bare-detail
+  content_type: application/json
+  shape: '{"detail": "<message>"}'
+  detail: >-
+    Returned by the router for an unknown path. No error code, so an agent cannot
+    distinguish routing failure from a resource-not-found on a real endpoint.
+problems:
+- status: 403
+  code: not_authenticated
+  type: client_error
+  title: Authentication credentials were not provided.
+  envelope: standardized
+  observed_at: https://api.app.voyc.ai/v3/organisation/
+  note: >-
+    Semantically a 401 (missing credentials) returned as 403 with no
+    WWW-Authenticate header. An agent cannot tell "authenticate and retry" from
+    "you are authenticated but forbidden".
+- status: 404
+  code: null
+  type: null
+  title: An unknown API path was supplied.
+  envelope: bare-detail
+  observed_at: https://api.app.voyc.ai/api/v2/conversation/
+- status: 404
+  code: null
+  type: null
+  title: HTML 404 page
+  envelope: null
+  content_type: text/html
+  observed_at: https://api.app.voyc.ai/openapi.json
+  note: >-
+    Paths outside the /api and /v3 prefixes return an HTML error page from the API
+    host, not JSON.
+observed_responses:
+- url: https://api.app.voyc.ai/v3/organisation/
+  status: 403
+  content_type: application/json
+- url: https://api.app.voyc.ai/api/v3/
+  status: 404
+  content_type: application/json
+- url: https://api.app.voyc.ai/api/v2/auth/login/
+  status: 200
+  content_type: application/json
+gaps:
+- No published error-code registry or remediation guidance.
+- No RFC 9457 application/problem+json representation.
+- No `type` URI dereferencing to documentation.

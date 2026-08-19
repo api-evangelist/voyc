@@ -1,0 +1,31 @@
+generated: '2026-08-14'
+method: searched
+status: none
+source: >-
+  Web search for a Voyc MCP server, npm/PyPI registry queries, DNS probe of
+  mcp.voyc.ai, and path probes of voyc.ai / app.voyc.ai / api.app.voyc.ai (2026-08-14)
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+note: >-
+  No MCP server of any kind. Voyc ships neither a hosted remote endpoint nor a
+  local-stdio package, and there is no OpenAPI to derive a candidate tool list
+  from — Voyc publishes no machine-readable contract at all. This file records a
+  verified absence; NO MCPServer pointer is emitted in apis.yml.
+tools: []
+evidence:
+- probe: dns mcp.voyc.ai
+  result: NXDOMAIN
+- probe: 'https://api.app.voyc.ai/.well-known/oauth-protected-resource'
+  result: 'HTTP 404'
+- probe: npm registry
+  names: ['voyc', 'voyc-ai', '@voyc/sdk', 'voyc-sdk']
+  result: not found
+- probe: web search "Voyc voyc.ai MCP server model context protocol"
+  result: >-
+    No first-party result. The only near-match is "Voyp", an unrelated calling
+    service with an MCP server — a name collision, not Voyc.
