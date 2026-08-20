@@ -64,6 +64,15 @@ tags:
 - Call Monitoring
 - Speech Analytics
 - Contact Centers
+- Financial-Services
+- Artificial Intelligence
+tags_raw:
+- Company
+- Conversation Intelligence
+- Compliance
+- Call Monitoring
+- Speech Analytics
+- Contact Centers
 - Financial Services
 - Artificial Intelligence
 apis:
@@ -82,6 +91,13 @@ apis:
   humanURL: https://help.voyc.ai/en/
   baseURL: https://api.app.voyc.ai
   tags:
+  - Conversation Intelligence
+  - Speech Analytics
+  - Compliance Monitoring
+  - Contact Center
+  - Call Recording
+  - Quality Assurance
+  tags_raw:
   - conversation-intelligence
   - speech-analytics
   - compliance-monitoring
