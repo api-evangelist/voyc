@@ -103,11 +103,11 @@ apis:
   baseURL: https://api.app.voyc.ai
   tags:
   - Conversation Intelligence
-  - Speech Analytics
-  - Compliance Monitoring
-  - Contact Center
-  - Call Recording
-  - Quality Assurance
+  - speech-analytics
+  - compliance-monitoring
+  - contact-center
+  - call-recording
+  - quality-assurance
   tags_raw:
   - conversation-intelligence
   - speech-analytics
