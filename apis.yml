@@ -79,7 +79,7 @@ tags:
 - Call Monitoring
 - Speech Analytics
 - Contact Center
-- Financial-Services
+- Financial Services
 - Artificial Intelligence
 tags_raw:
 - Company
@@ -90,6 +90,7 @@ tags_raw:
 - Contact Centers
 - Financial Services
 - Artificial Intelligence
+- Financial-Services
 apis:
 - name: Voyc API v3
   description: >-
