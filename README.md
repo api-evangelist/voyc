@@ -64,6 +64,116 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Voyc is a company surfaced as a portfolio company of techstars and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Voyc is a conversation intelligence and compliance monitoring platform for regulated industries such as financial services and insurance. The platform automatically monitors 100% of contact centre interactions using speech analytics AI, flagging high-risk cases, complaints, and vulnerable customers in near real time, automating QA review, and producing the management information firms need to evidence regulatory compliance (including FCA Consumer Duty). Calls reach Voyc from telephony platforms like Twilio, Genesys, Five9, RingCentral, Aircall, Amazon Connect, and Talkdesk via SFTP or API, and a Voyc API (v3) supports conversation uploads and data export alongside webhooks.
 
-Backed by: techstars — https://voyc.ai/
+**Areas:** Company · Conversation Intelligence · Compliance · Call Monitoring · Speech Analytics · Contact Center · Financial Services · Artificial Intelligence
+
+## Voyc on APIs.io
+
+Everything profiled for Voyc is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/voyc/](https://apis.io/providers/voyc/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Voyc API v3](https://apis.io/apis/voyc/voyc-api-v3/) — Voyc's integration API, monitored on the public status page as "Voyc API v3" (Data Export) alongside "Voyc API" (Conversation Uploads & Reporting). The…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Voyc Webhooks](https://apis.io/asyncapis/voyc/voyc-webhooks/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Voyc Authentication](https://apis.io/security/voyc/voyc-authentication/)
+- [Voyc Domain Security](https://apis.io/security/voyc/voyc-domain-security/)
+- [Voyc Trust Center](https://apis.io/security/voyc/voyc-trust-center/)
+- [Voyc Vulnerability Disclosure](https://apis.io/security/voyc/voyc-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Voyc Plans Pricing](https://apis.io/plans/voyc/voyc-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Voyc Rate Limits](https://apis.io/rate-limits/voyc/voyc-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://voyc.ai/)
+- [Documentation](https://help.voyc.ai/en/)
+- [Getting started](https://help.voyc.ai/en/collections/2918818-getting-started-with-voyc)
+- [Support](https://www.voyc.ai/contact/)
+- [Blog](https://voyc.ai/voyc-ai-blog-articles-case-studies-and-whitepapers/)
+- [Security](https://trust.voyc.ai/)
+- [Compliance](https://trust.voyc.ai/)
+- [Terms of service](https://voyc.ai/terms-and-conditions/)
+- [Privacy policy](https://voyc.ai/gdpr-privacy-notice/)
+- [GitHub](https://github.com/voyc-ai)
+- [Status](https://status.voyc.ai/)
+
+## API Evangelist rating
+
+**Kin Score 42.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 43.4 |
+
+**Agent readiness 25.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 32.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/voyc/](https://apis.io/providers/voyc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Voyc: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/voyc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
